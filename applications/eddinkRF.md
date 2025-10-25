@@ -124,13 +124,13 @@ struct VoteAllocation {
 ```
 
 **REST API Endpoints (Backend):**
-- `POST /api/projects` - Register new project
-- `GET /api/projects/:id` - Retrieve project details
-- `POST /api/rounds` - Create funding round
-- `GET /api/rounds/:id` - Get round details and participants
-- `POST /api/votes` - Submit badge holder vote
-- `GET /api/analytics/project/:id` - Project impact metrics
-- `GET /api/analytics/round/:id` - Round statistics
+- `POST /project/create` - Register new project
+- `GET /project/:id` - Retrieve project details
+- `POST /round/create` - Create funding round
+- `GET /round/:id` - Get round details and participants
+- `POST /vote` - Submit badge holder vote
+- `GET /analytics/project/:id/{metric}` - Project impact metrics
+- `GET /analytics/round/:id/{metric}` - Round statistics
 
 ### What This Project Will NOT Provide
 
