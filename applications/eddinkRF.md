@@ -90,8 +90,11 @@ We designed the platform to evolve naturally as community capacity and data matu
 
 ```rust
 // Project Registry
+type ProjectId = u64;
+type RoundId = u64;
+type VoteCount = u128;
 struct Project {
-    id: u64,
+    id: ProjectId,
     owner: AccountId,
     github_verification: bool,
     metadata_hash: Hash,  // IPFS link to full details
@@ -101,7 +104,7 @@ struct Project {
 
 // Funding Round
 struct Round {
-    id: u64,
+    id: RoundId,
     admin: AccountId,
     total_funds: Balance,
     voting_start: Timestamp,
@@ -115,7 +118,7 @@ struct Round {
 struct VoteAllocation {
     badge_holder: AccountId,
     round_id: u64,
-    allocations: Vec<(u64, u128)>,  // (project_id, amount)
+    allocations: Vec<(ProjectId, VoteCount)>,
     timestamp: Timestamp,
 }
 ```
