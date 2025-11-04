@@ -106,6 +106,7 @@ struct Project {
 // Funding Round
 struct Round {
     id: RoundId,
+    round_votes_id: RoundVotesId
     admin: AccountId,
     total_funds: Balance,
     voting_start: Timestamp,
@@ -115,13 +116,24 @@ struct Round {
     status: RoundStatus,
 }
 
-// Vote Allocation
-struct VoteAllocation {
-    badge_holder: AccountId,
-    round_id: u64,
-    allocations: Vec<(ProjectId, VoteCount)>,
-    timestamp: Timestamp,
+enum Vote {
+    Voted(ProjectId),
+    Pending
 }
+impl Vote {
+    fn submit(ProjectId) -> VoteResult<()>
+}
+struct RoundVotes {
+    id: RoundVotesId,
+    round_id: RoundId,
+    votes: HashMap<BadgeholderId, Vote>,
+    candidates: Vec<ProjectId>
+}
+impl RoundVotes {
+    fn add_voter(BadgeholderId) -> RoundVotesResult<()>
+    fn vote(BadgeholderId, ProjectId) -> RoundVotesResult<()>
+}
+
 ```
 
 **REST API Endpoints (Backend):**
