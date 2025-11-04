@@ -92,6 +92,7 @@ We designed the platform to evolve naturally as community capacity and data matu
 // Project Registry
 type ProjectId = u64;
 type RoundId = u64;
+type AccountId = u64;
 type VoteCount = u128;
 
 struct Project {
@@ -111,7 +112,7 @@ struct Round {
     total_funds: Balance,
     voting_start: Timestamp,
     voting_end: Timestamp,
-    eligible_projects: Vec<u64>,
+    eligible_projects: Vec<ProjectId>,
     badge_holders: Vec<AccountId>,
     status: RoundStatus,
 }
@@ -126,12 +127,12 @@ impl Vote {
 struct RoundVotes {
     id: RoundVotesId,
     round_id: RoundId,
-    votes: HashMap<BadgeholderId, Vote>,
+    votes: HashMap<AccountId, Vote>,
     candidates: Vec<ProjectId>
 }
 impl RoundVotes {
-    fn add_voter(BadgeholderId) -> RoundVotesResult<()>
-    fn vote(BadgeholderId, ProjectId) -> RoundVotesResult<()>
+    fn add_voter(AccountId) -> RoundVotesResult<()>
+    fn vote(AccountId, ProjectId) -> RoundVotesResult<()>
 }
 
 ```
@@ -141,7 +142,8 @@ impl RoundVotes {
 - `GET /project/:id` - Retrieve project details
 - `POST /round/create` - Create funding round
 - `GET /round/:id` - Get round details and participants
-- `POST /vote` - Submit badge holder vote
+- `POST /round/add_voters` - Adds voters to the round
+- `POST /round/vote/:id` - Submit badge holder vote
 - `GET /analytics/project/:id/{metric}` - Project impact metrics
 - `GET /analytics/round/:id/{metric}` - Round statistics
 
