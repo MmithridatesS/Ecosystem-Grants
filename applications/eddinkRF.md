@@ -93,8 +93,6 @@ We designed the platform to evolve naturally as community capacity and data matu
 type ProjectId = u64;
 type RoundId = u64;
 type AccountId = u64;
-type VoteCount = u128;
-
 struct Project {
     id: ProjectId,
     owner: AccountId,
